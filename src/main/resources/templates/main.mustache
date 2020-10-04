@@ -1,32 +1,33 @@
 <html>
 <body>
 
+<div>{{user}}</div>
 <div>
-    <form action="@{/logout}" method="post">
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
          <input type="submit" value="Sign Out"/>
-        <input type="hidden" name="_csrf" value="{{csrf.token}}"/>
     </form>
  </div>
 <div>
     <form method="post">
         <input type="text" name="text" placeholder="Type something" />
         <input type="text" name="tag" placeholder="Тэг">
-        <input type="hidden" name="_csrf" value="{{csrf.token}}"/>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <button type="submit">Добавить</button>
     </form>
 </div>
 <div>MessageHistory</div>
 <form method="post" action="filter">
     <input type="text" name="filter">
-    <input type="hidden" name="_csrf" value="{{csrf.token}}"/>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <button type="submit">Find</button>
 </form>
 {{#messages}}
     <div>
         <b>{{id}}</b>
         <span>{{text}}</span>
-        <input type="hidden" name="_csrf" value="{{csrf.token}}"/>
         <i>{{tag}}</i>
+        <strong>{{authorName}}</strong>
     </div>
 {{/messages}}
 </body>
